@@ -6,8 +6,7 @@
     <meta name="description" content="MPhotography_CM - Professional photography services in Tri-Cities. Capturing memories and moments that matter.">
     <meta name="keywords" content="photography, photographer, Tri-Cities, portraits, weddings, professional photography, MPhotography_CM">
     <meta name="author" content="MPhotography_CM">
-    
-    <!-- Open Graph Meta Tags -->
+
     <meta property="og:title" content="MPhotography_CM - Professional Photography">
     <meta property="og:description" content="Capturing memories and moments that matter. Professional photography services in Tri-Cities for portraits, weddings, and special events.">
     <meta property="og:image" content="https://raw.githubusercontent.com/michaellittleboi-blip/michaellittleboi-blip.github.io/refs/heads/main/2916D275-FFC3-46C8-A1DA-BF59A43FE988.JPG">
@@ -18,8 +17,7 @@
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="MPhotography_CM">
     <meta property="og:locale" content="en_US">
-    
-    <!-- Twitter Card Meta Tags -->
+
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:site" content="@mphotography_cm">
     <meta name="twitter:creator" content="@mphotography_cm">
@@ -27,15 +25,15 @@
     <meta name="twitter:description" content="Capturing memories and moments that matter. Professional photography services in Tri-Cities.">
     <meta name="twitter:image" content="https://raw.githubusercontent.com/michaellittleboi-blip/michaellittleboi-blip.github.io/refs/heads/main/2916D275-FFC3-46C8-A1DA-BF59A43FE988.JPG">
     <meta name="twitter:image:alt" content="MPhotography_CM Portfolio Preview">
-    
+
     <meta name="theme-color" content="#0a0a0a">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <meta name="apple-mobile-web-app-title" content="MPhotography_CM">
-    
+
     <link rel="canonical" href="https://michaellittleboi-blip.github.io/">
     <link rel="icon" type="image/x-icon" href="https://raw.githubusercontent.com/michaellittleboi-blip/michaellittleboi-blip.github.io/refs/heads/main/favicon.ico">
-    
+
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -62,10 +60,19 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+    <script type="importmap">
+    {
+      "imports": {
+        "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js"
+      }
+    }
+    </script>
+
     <title>MPhotography_CM — Freelance Photography</title>
 
     <style>
-      /* ========== RESET & BASE ========== */
+
       *, *::before, *::after {
         margin: 0;
         padding: 0;
@@ -113,8 +120,17 @@
         color: var(--bg-primary);
       }
 
-      /* ========== CUSTOM CURSOR (desktop only) ========== */
+                ::-webkit-scrollbar {
+                  display: none;
+                }
+
+                html, body {
+                  -ms-overflow-style: none;
+                  scrollbar-width: none;
+                }
+
       @media (hover: hover) and (pointer: fine) {
+        *, *::before, *::after { cursor: none !important; }
         .cursor-dot {
           position: fixed;
           width: 8px;
@@ -144,7 +160,6 @@
         }
       }
 
-      /* ========== PRELOADER ========== */
       .preloader {
         position: fixed;
         top: 0; left: 0; right: 0; bottom: 0;
@@ -184,7 +199,6 @@
         50% { transform: scaleX(1); }
       }
 
-      /* ========== NAVIGATION ========== */
       nav {
         position: fixed;
         top: 0;
@@ -286,54 +300,110 @@
         transform: rotate(-45deg) translate(5px, -5px);
       }
 
-      /* ========== HERO ========== */
       .hero {
         height: 100vh;
         min-height: 600px;
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-end;
-        align-items: flex-start;
-        padding: 0 8% 10vh;
         position: relative;
         overflow: hidden;
       }
-      .hero-bg {
+      #gallery-canvas {
         position: absolute;
-        top: 0; left: 0; right: 0; bottom: 0;
+        top: 0; left: 0;
+        width: 100%;
+        height: 100%;
+        display: block;
         z-index: 0;
-        background-size: cover;
-        background-position: center 30%;
-        background-repeat: no-repeat;
-        opacity: 0;
-        transition: opacity 1.5s var(--ease-out-expo);
-        transform: scale(1.05);
-        animation: heroZoom 20s ease-in-out infinite alternate;
+        cursor: grab;
+        touch-action: none;
       }
-      .hero-bg.loaded {
-        opacity: 1;
+      #gallery-canvas:active {
+        cursor: grabbing;
       }
-      @keyframes heroZoom {
-        0% { transform: scale(1.05); }
-        100% { transform: scale(1.12); }
-      }
+
       .hero::before {
         content: '';
         position: absolute;
         top: 0; left: 0; right: 0; bottom: 0;
-        background: linear-gradient(
-          to top,
-          rgba(10,10,10,0.95) 0%,
-          rgba(10,10,10,0.6) 30%,
-          rgba(10,10,10,0.2) 60%,
-          rgba(10,10,10,0.3) 100%
-        );
+        background:
+          radial-gradient(ellipse at center, transparent 35%, rgba(10,10,10,0.55) 100%),
+          linear-gradient(
+            to top,
+            rgba(10,10,10,0.92) 0%,
+            rgba(10,10,10,0.25) 35%,
+            transparent 55%,
+            rgba(10,10,10,0.4) 100%
+          );
         z-index: 1;
+        pointer-events: none;
       }
+
+      .hero-focus-label {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, calc(-50% + 30vh));
+        z-index: 2;
+        padding: 0.5rem 1.4rem;
+        font-size: 0.7rem;
+        letter-spacing: 4px;
+        text-transform: uppercase;
+        color: var(--text-primary);
+        background: rgba(10,10,10,0.55);
+        border: 1px solid var(--border-light);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        opacity: 0;
+        transition: opacity 0.5s var(--ease-out-expo);
+        pointer-events: none;
+        white-space: nowrap;
+      }
+      .hero-focus-label.visible {
+        opacity: 1;
+      }
+      .hero-focus-hint {
+        position: absolute;
+        bottom: 3rem;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 2;
+        font-size: 0.65rem;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        color: var(--text-secondary);
+        opacity: 0;
+        animation: fadeIn 1s ease 2s forwards;
+        pointer-events: none;
+      }
+
+      .hero-fallback {
+        display: none;
+        position: absolute;
+        inset: 0;
+        z-index: 0;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 0.4rem;
+        padding: 0.4rem;
+        background: var(--bg-primary);
+      }
+      .hero-fallback img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        opacity: 0.45;
+      }
+      .hero.fallback-active::before { display: none; }
+      .hero.fallback-active .hero-fallback { display: grid; }
       .hero-content {
-        position: relative;
+        position: absolute;
+        bottom: 10vh;
+        left: 8%;
+        right: 8%;
         z-index: 2;
         max-width: 800px;
+        pointer-events: none;
+      }
+      .hero-content .hero-btn {
+        pointer-events: auto;
       }
       .hero-eyebrow {
         font-size: 0.75rem;
@@ -353,6 +423,7 @@
         letter-spacing: -2px;
         line-height: 1.05;
         margin-bottom: 1.5rem;
+        text-shadow: 0 4px 40px rgba(0,0,0,0.7);
         opacity: 0;
         transform: translateY(40px);
         animation: fadeInUp 1.2s var(--ease-out-expo) 0.7s forwards;
@@ -367,6 +438,7 @@
         font-weight: 300;
         line-height: 1.8;
         max-width: 500px;
+        text-shadow: 0 2px 20px rgba(0,0,0,0.8);
         opacity: 0;
         transform: translateY(30px);
         animation: fadeInUp 1s var(--ease-out-expo) 0.9s forwards;
@@ -445,7 +517,6 @@
         50% { transform: scaleY(1); transform-origin: top; }
       }
 
-      /* ========== HORIZONTAL MARQUEE ========== */
       .marquee-section {
         padding: 3rem 0;
         border-top: 1px solid var(--border);
@@ -487,12 +558,6 @@
         100% { transform: translateX(-50%); }
       }
 
-      /* ========== PORTFOLIO SECTION ========== */
-      .portfolio {
-        padding: 8rem 5% 4rem;
-        max-width: 1600px;
-        margin: 0 auto;
-      }
       .section-header {
         display: flex;
         justify-content: space-between;
@@ -521,73 +586,6 @@
         text-align: right;
       }
 
-      /* ========== MASONRY GALLERY ========== */
-      .gallery-masonry {
-        columns: 3;
-        column-gap: 1.2rem;
-      }
-      .gallery-item {
-        break-inside: avoid;
-        margin-bottom: 1.2rem;
-        position: relative;
-        overflow: hidden;
-        cursor: pointer;
-        border-radius: 4px;
-        background: var(--bg-card);
-      }
-      .gallery-item img {
-        width: 100%;
-        display: block;
-        transition: transform 0.8s var(--ease-out-expo);
-        opacity: 0;
-        transform: scale(1.02);
-      }
-      .gallery-item img.img-loaded {
-        opacity: 1;
-        transform: scale(1);
-      }
-      .gallery-item:hover img {
-        transform: scale(1.05);
-      }
-      .gallery-item-overlay {
-        position: absolute;
-        bottom: 0; left: 0; right: 0;
-        padding: 3rem 1.5rem 1.5rem;
-        background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
-        opacity: 0;
-        transition: opacity 0.5s ease;
-        display: flex;
-        align-items: flex-end;
-        justify-content: space-between;
-      }
-      .gallery-item:hover .gallery-item-overlay {
-        opacity: 1;
-      }
-      .gallery-item-overlay span {
-        font-size: 0.75rem;
-        letter-spacing: 2px;
-        text-transform: uppercase;
-        color: rgba(255,255,255,0.8);
-      }
-      .gallery-item-overlay .view-icon {
-        width: 36px;
-        height: 36px;
-        border: 1px solid rgba(255,255,255,0.3);
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      }
-      .gallery-item-overlay .view-icon svg {
-        width: 14px;
-        height: 14px;
-        fill: none;
-        stroke: white;
-        stroke-width: 2;
-        stroke-linecap: round;
-      }
-
-      /* Reveal animation */
       .reveal {
         opacity: 0;
         transform: translateY(40px);
@@ -598,55 +596,6 @@
         transform: translateY(0);
       }
 
-      /* ========== FEATURED / LARGE IMAGE SECTION ========== */
-      .featured-section {
-        padding: 4rem 5%;
-        max-width: 1600px;
-        margin: 0 auto;
-      }
-      .featured-image-wrapper {
-        position: relative;
-        overflow: hidden;
-        border-radius: 4px;
-        cursor: pointer;
-      }
-      .featured-image-wrapper img {
-        width: 100%;
-        height: 70vh;
-        object-fit: cover;
-        display: block;
-        transition: transform 1s var(--ease-out-expo);
-      }
-      .featured-image-wrapper:hover img {
-        transform: scale(1.03);
-      }
-      .featured-caption {
-        position: absolute;
-        bottom: 2rem;
-        left: 2rem;
-        z-index: 2;
-      }
-      .featured-caption h3 {
-        font-family: var(--serif);
-        font-size: 1.5rem;
-        font-weight: 400;
-        margin-bottom: 0.5rem;
-      }
-      .featured-caption p {
-        font-size: 0.8rem;
-        color: var(--text-secondary);
-        letter-spacing: 1px;
-      }
-      .featured-image-wrapper::after {
-        content: '';
-        position: absolute;
-        bottom: 0; left: 0; right: 0;
-        height: 40%;
-        background: linear-gradient(to top, rgba(0,0,0,0.6), transparent);
-        pointer-events: none;
-      }
-
-      /* ========== STATS BAR ========== */
       .stats-bar {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
@@ -674,7 +623,6 @@
         color: var(--text-secondary);
       }
 
-      /* ========== ABOUT SECTION ========== */
       .about {
         padding: 8rem 5%;
         background: var(--bg-secondary);
@@ -730,15 +678,13 @@
       }
       .about-image-border {
         position: absolute;
-        top: 0; right: 0;
-        width: 80%;
-        height: 80%;
+        inset: 1rem;
         border: 1px solid var(--accent);
         border-radius: 4px;
-        opacity: 0.3;
+        opacity: 0.5;
+        pointer-events: none;
       }
 
-      /* ========== TESTIMONIAL / QUOTE ========== */
       .quote-section {
         padding: 8rem 5%;
         text-align: center;
@@ -769,7 +715,6 @@
         color: var(--text-secondary);
       }
 
-      /* ========== CONTACT SECTION ========== */
       .contact {
         padding: 8rem 5%;
         max-width: 1200px;
@@ -839,6 +784,7 @@
         transform: translateY(-3px);
         box-shadow: 0 20px 40px rgba(200,168,124,0.25);
       }
+
       .email-link svg {
         width: 16px;
         height: 16px;
@@ -849,7 +795,6 @@
         stroke-linejoin: round;
       }
 
-      /* ========== LIGHTBOX ========== */
       .lightbox {
         display: none;
         position: fixed;
@@ -971,7 +916,6 @@
         border: 1px solid var(--border);
       }
 
-      /* ========== FOOTER ========== */
       footer {
         padding: 4rem 5%;
         text-align: center;
@@ -1013,7 +957,6 @@
         color: var(--accent);
       }
 
-      /* ========== ANIMATIONS ========== */
       @keyframes fadeInUp {
         from { opacity: 0; transform: translateY(30px); }
         to { opacity: 1; transform: translateY(0); }
@@ -1023,11 +966,7 @@
         to { opacity: 1; }
       }
 
-      /* ========== RESPONSIVE ========== */
       @media (max-width: 1024px) {
-        .gallery-masonry {
-          columns: 2;
-        }
         .about-container {
           grid-template-columns: 1fr;
           gap: 3rem;
@@ -1061,14 +1000,40 @@
           font-size: 1rem;
           letter-spacing: 4px;
         }
-        .hero {
-          padding: 0 6% 8vh;
+        #gallery-canvas {
+          height: 58vh;
+        }
+        .hero::before {
+          background: linear-gradient(to bottom, rgba(10,10,10,0.4) 0%, transparent 28%, transparent 48%, var(--bg-primary) 86%);
+        }
+        .hero-content {
+          left: 0;
+          right: 0;
+          bottom: 0;
+          padding: 1rem 6% 2rem;
+        }
+        .hero-eyebrow {
+          margin-bottom: 0.75rem;
+        }
+        .hero h1 {
+          font-size: 2.1rem;
+          margin-bottom: 1rem;
+        }
+        .hero-description {
+          display: none;
+        }
+        .hero-cta {
+          margin-top: 1.25rem;
+        }
+        .hero-focus-label {
+          top: 58vh;
+          transform: translate(-50%, -1rem);
+        }
+        .hero-focus-hint {
+          display: none;
         }
         .scroll-indicator {
           display: none;
-        }
-        .gallery-masonry {
-          columns: 1;
         }
         .section-header {
           flex-direction: column;
@@ -1085,9 +1050,6 @@
           grid-template-columns: 1fr;
           gap: 1rem;
         }
-        .featured-image-wrapper img {
-          height: 50vh;
-        }
         .lightbox-nav {
           width: 40px;
           height: 40px;
@@ -1098,7 +1060,7 @@
 
       @media (max-width: 480px) {
         .hero h1 {
-          font-size: 2.5rem;
+          font-size: 1.85rem;
           letter-spacing: -1px;
         }
         .hero-cta {
@@ -1109,9 +1071,6 @@
           width: 100%;
           justify-content: center;
         }
-        .portfolio {
-          padding: 4rem 4%;
-        }
         .lightbox-img {
           max-width: 95vw;
           max-height: 80vh;
@@ -1119,9 +1078,6 @@
       }
 
       @media (hover: none) {
-        .gallery-item:hover img { transform: none; }
-        .gallery-item:active img { transform: scale(1.02); }
-        .gallery-item-overlay { opacity: 1; }
         .social-link:hover { transform: none; border-color: var(--border-light); color: var(--text-primary); box-shadow: none; }
         .social-link:active { border-color: var(--accent); color: var(--accent); }
         .email-link:hover { transform: none; box-shadow: none; }
@@ -1130,39 +1086,23 @@
         .lightbox-close:hover { background: rgba(255,255,255,0.05); transform: none; }
       }
 
-      /* Smooth image placeholder shimmer */
-      .gallery-item::before {
-        content: '';
-        position: absolute;
-        top: 0; left: 0; right: 0; bottom: 0;
-        background: linear-gradient(90deg, var(--bg-card) 25%, var(--bg-elevated) 50%, var(--bg-card) 75%);
-        background-size: 200% 100%;
-        animation: shimmer 1.5s ease-in-out infinite;
-        z-index: 0;
+      @media (prefers-reduced-motion: reduce) {
+        .hero-focus-hint { display: none; }
       }
-      .gallery-item img {
-        position: relative;
-        z-index: 1;
-      }
-      @keyframes shimmer {
-        0% { background-position: 200% 0; }
-        100% { background-position: -200% 0; }
       }
     </style>
   </head>
 
   <body>
-    <!-- Preloader -->
+
     <div class="preloader" id="preloader">
       <div class="preloader-text">MPhoto</div>
       <div class="preloader-line"></div>
     </div>
 
-    <!-- Custom Cursor -->
     <div class="cursor-dot" id="cursorDot"></div>
     <div class="cursor-ring" id="cursorRing"></div>
 
-    <!-- Navigation -->
     <nav id="navbar">
       <div class="nav-container">
         <div class="logo">M<span>.</span>Photo</div>
@@ -1172,33 +1112,34 @@
           <span></span>
         </button>
         <ul class="nav-links" id="navLinks">
-          <li><a href="#home">Home</a></li>
-          <li><a href="#portfolio">Portfolio</a></li>
+          <li><a href="#home">Gallery</a></li>
           <li><a href="#about">About</a></li>
           <li><a href="#contact">Contact</a></li>
         </ul>
       </div>
     </nav>
 
-    <!-- Hero Section -->
     <section class="hero" id="home">
-      <div class="hero-bg" id="heroBg"></div>
+
+      <canvas id="gallery-canvas" aria-label="3D photo gallery — drag to rotate, click a photo to enlarge"></canvas>
+      <div class="hero-fallback" id="heroFallback" aria-hidden="true"></div>
+      <div class="hero-focus-label" id="heroFocusLabel"></div>
       <div class="hero-content">
         <div class="hero-eyebrow">Tri-Cities, WA — Freelance Photographer</div>
         <h1>Capturing<br><em>Moments</em> That<br>Matter</h1>
         <p class="hero-description">Portraits, weddings, and the quiet beauty of everyday life — one frame at a time.</p>
         <div class="hero-cta">
-          <a href="#portfolio" class="hero-btn">View Portfolio</a>
+          <a href="#about" class="hero-btn">View Portfolio</a>
           <a href="#contact" class="hero-btn hero-btn-outline">Get in Touch</a>
         </div>
       </div>
+      <div class="hero-focus-hint">Drag to rotate · Click a photo to enlarge</div>
       <div class="scroll-indicator">
         <span class="scroll-indicator-text">Scroll</span>
         <div class="scroll-indicator-line"></div>
       </div>
     </section>
 
-    <!-- Marquee -->
     <div class="marquee-section">
       <div class="marquee-track">
         <div class="marquee-item">Portraits <div class="marquee-dot"></div></div>
@@ -1207,7 +1148,7 @@
         <div class="marquee-item"><em>Events</em> <div class="marquee-dot"></div></div>
         <div class="marquee-item">Creative <div class="marquee-dot"></div></div>
         <div class="marquee-item"><em>Fine Art</em> <div class="marquee-dot"></div></div>
-        <!-- Duplicate for seamless loop -->
+
         <div class="marquee-item">Portraits <div class="marquee-dot"></div></div>
         <div class="marquee-item"><em>Weddings</em> <div class="marquee-dot"></div></div>
         <div class="marquee-item">Lifestyle <div class="marquee-dot"></div></div>
@@ -1217,96 +1158,6 @@
       </div>
     </div>
 
-    <!-- Portfolio Section -->
-    <section class="portfolio" id="portfolio">
-      <div class="section-header reveal">
-        <h2 class="section-title">Selected<br><em>Works</em></h2>
-        <p class="section-subtitle">A curated collection of moments, emotions, and stories told through the lens</p>
-      </div>
-
-      <div class="gallery-masonry">
-        <!-- Image 1: _DSC1442.jpg — 3921x5881 (portrait 2:3) -->
-        <div class="gallery-item reveal" data-index="0">
-          <img data-src="https://raw.githubusercontent.com/michaellittleboi-blip/michaellittleboi-blip.github.io/refs/heads/main/_DSC1442.jpg"
-               src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 3921 5881'%3E%3C/svg%3E"
-               alt="Portrait Photography" loading="lazy" class="lazy-img">
-          <div class="gallery-item-overlay">
-            <span>Portrait</span>
-            <div class="view-icon"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
-          </div>
-        </div>
-
-        <!-- Image 2: _DSC4044.jpg — 3552x5328 (portrait ~2:3) NEW -->
-        <div class="gallery-item reveal" data-index="1">
-          <img data-src="https://raw.githubusercontent.com/michaellittleboi-blip/michaellittleboi-blip.github.io/refs/heads/main/_DSC4044.jpg"
-               src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 3552 5328'%3E%3C/svg%3E"
-               alt="Creative Photography" loading="lazy" class="lazy-img">
-          <div class="gallery-item-overlay">
-            <span>Creative</span>
-            <div class="view-icon"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
-          </div>
-        </div>
-
-        <!-- Image 3: _DSC2398.jpg — 3600x4500 (portrait 4:5) -->
-        <div class="gallery-item reveal" data-index="2">
-          <img data-src="https://raw.githubusercontent.com/michaellittleboi-blip/michaellittleboi-blip.github.io/refs/heads/main/_DSC2398.jpg"
-               src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 3600 4500'%3E%3C/svg%3E"
-               alt="Nature Photography" loading="lazy" class="lazy-img">
-          <div class="gallery-item-overlay">
-            <span>Nature</span>
-            <div class="view-icon"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
-          </div>
-        </div>
-
-        <!-- Image 4: _DSC1292.jpg — 3742x5613 (portrait ~2:3) -->
-        <div class="gallery-item reveal" data-index="3">
-          <img data-src="https://raw.githubusercontent.com/michaellittleboi-blip/michaellittleboi-blip.github.io/refs/heads/main/_DSC1292.jpg"
-               src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 3742 5613'%3E%3C/svg%3E"
-               alt="Wedding Photography" loading="lazy" class="lazy-img">
-          <div class="gallery-item-overlay">
-            <span>Wedding</span>
-            <div class="view-icon"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
-          </div>
-        </div>
-
-        <!-- Image 5: _DSC2512.jpg — 4032x6048 (portrait 2:3) -->
-        <div class="gallery-item reveal" data-index="4">
-          <img data-src="https://raw.githubusercontent.com/michaellittleboi-blip/michaellittleboi-blip.github.io/refs/heads/main/_DSC2512.jpg"
-               src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 4032 6048'%3E%3C/svg%3E"
-               alt="Aesthetic Photography" loading="lazy" class="lazy-img">
-          <div class="gallery-item-overlay">
-            <span>Aesthetic</span>
-            <div class="view-icon"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
-          </div>
-        </div>
-
-        <!-- Image 6: _DSC4424.jpeg — 4032x6048 (portrait 2:3) NEW -->
-        <div class="gallery-item reveal" data-index="5">
-          <img data-src="https://raw.githubusercontent.com/michaellittleboi-blip/michaellittleboi-blip.github.io/refs/heads/main/_DSC4424.jpeg"
-               src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 4032 6048'%3E%3C/svg%3E"
-               alt="Lifestyle Photography" loading="lazy" class="lazy-img">
-          <div class="gallery-item-overlay">
-            <span>Lifestyle</span>
-            <div class="view-icon"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Featured Image -->
-    <section class="featured-section reveal">
-      <div class="featured-image-wrapper" data-lightbox-index="6">
-        <img data-src="https://raw.githubusercontent.com/michaellittleboi-blip/michaellittleboi-blip.github.io/refs/heads/main/2916D275-FFC3-46C8-A1DA-BF59A43FE988.JPG"
-             src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1290 2098'%3E%3C/svg%3E"
-             alt="Featured Photography" loading="lazy" class="lazy-img">
-        <div class="featured-caption">
-          <h3>Behind the Lens</h3>
-          <p>Every frame tells a story</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- Stats -->
     <div class="stats-bar">
       <div class="stat-item reveal">
         <div class="stat-number">100+</div>
@@ -1322,14 +1173,12 @@
       </div>
     </div>
 
-    <!-- Quote Section -->
     <section class="quote-section reveal">
       <div class="quote-mark">"</div>
       <p class="quote-text">Photography is the story I fail to put into words — so I let the light, the shadow, and the moment speak for themselves.</p>
       <p class="quote-author">— MPhotography_CM</p>
     </section>
 
-    <!-- About Section -->
     <section class="about" id="about">
       <div class="about-container">
         <div class="about-left reveal">
@@ -1341,16 +1190,14 @@
         </div>
         <div class="about-right reveal">
           <div class="about-image-stack">
-            <img data-src="https://raw.githubusercontent.com/michaellittleboi-blip/michaellittleboi-blip.github.io/refs/heads/main/2916D275-FFC3-46C8-A1DA-BF59A43FE988.JPG"
-                 src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 4032 6048'%3E%3C/svg%3E"
-                 alt="About MPhotography" loading="lazy" class="lazy-img">
+            <img src="https://raw.githubusercontent.com/michaellittleboi-blip/michaellittleboi-blip.github.io/refs/heads/main/2916D275-FFC3-46C8-A1DA-BF59A43FE988.JPG"
+                 alt="About MPhotography" loading="lazy">
             <div class="about-image-border"></div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Contact Section -->
     <section class="contact" id="contact">
       <h2 class="section-title reveal">Let's Create<br><em>Together</em></h2>
       <p class="contact-subtitle reveal">Available for portraits, weddings, and creative collaborations</p>
@@ -1362,13 +1209,12 @@
           Instagram
         </a>
       </div>
-      <a href="/cdn-cgi/l/email-protection#8ee3e7ede6efebe2e2e7fafae2ebece1e7cee9e3efe7e2a0ede1e3" class="email-link">
+      <a href="mailto:michaellittleboi@gmail.com" class="email-link">
         <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
         Get in Touch
       </a>
     </section>
 
-    <!-- Lightbox -->
     <div class="lightbox" id="lightbox">
       <button class="lightbox-close" aria-label="Close"></button>
       <button class="lightbox-nav lightbox-prev" aria-label="Previous"></button>
@@ -1377,16 +1223,14 @@
       </div>
       <button class="lightbox-nav lightbox-next" aria-label="Next"></button>
       <div class="lightbox-counter">
-        <span id="currentIndex">1</span> / <span id="totalImages">7</span>
+        <span id="currentIndex">1</span> / <span id="totalImages">14</span>
       </div>
     </div>
 
-    <!-- Footer -->
     <footer>
       <div class="footer-logo">M<span>.</span>Photo</div>
       <ul class="footer-links">
-        <li><a href="#home">Home</a></li>
-        <li><a href="#portfolio">Portfolio</a></li>
+        <li><a href="#home">Gallery</a></li>
         <li><a href="#about">About</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
@@ -1394,19 +1238,18 @@
     </footer>
 
     <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-      // ========== PRELOADER ==========
+
       window.addEventListener('load', () => {
         setTimeout(() => {
           document.getElementById('preloader').classList.add('hidden');
         }, 800);
       });
-      // Failsafe — hide preloader after 4s no matter what
+
       setTimeout(() => {
         const p = document.getElementById('preloader');
         if (p) p.classList.add('hidden');
       }, 4000);
 
-      // ========== CUSTOM CURSOR ==========
       if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
         const dot = document.getElementById('cursorDot');
         const ring = document.getElementById('cursorRing');
@@ -1429,44 +1272,46 @@
         }
         animateRing();
 
-        // Hover effects on interactive elements
-        document.querySelectorAll('a, button, .gallery-item, .featured-image-wrapper').forEach(el => {
+        document.querySelectorAll('a, button, #gallery-canvas').forEach(el => {
           el.addEventListener('mouseenter', () => ring.classList.add('hover'));
           el.addEventListener('mouseleave', () => ring.classList.remove('hover'));
         });
       }
 
-      // ========== HERO BACKGROUND ==========
-      (function loadHero() {
-        const heroBg = document.getElementById('heroBg');
-        const img = new Image();
-        const url = 'https://raw.githubusercontent.com/michaellittleboi-blip/michaellittleboi-blip.github.io/refs/heads/main/2916D275-FFC3-46C8-A1DA-BF59A43FE988.JPG';
-        img.onload = () => {
-          heroBg.style.backgroundImage = `url(${url})`;
-          heroBg.classList.add('loaded');
-        };
-        img.src = url;
-      })();
+      const GH_BASE = 'https://raw.githubusercontent.com/michaellittleboi-blip/michaellittleboi-blip.github.io/refs/heads/main/';
+      window.GALLERY_PHOTOS = [
+        { file: '_DSC1442.jpg',                                       cat: 'Portrait',   alt: 'Portrait Photography' },
+        { file: '_DSC4044.jpg',                                       cat: 'Creative',   alt: 'Creative Photography' },
+        { file: '_DSC2398.jpg',                                       cat: 'Nature',     alt: 'Nature Photography' },
+        { file: '_DSC1292.jpg',                                       cat: 'Wedding',    alt: 'Wedding Photography' },
+        { file: '_DSC2512.jpg',                                       cat: 'Aesthetic',  alt: 'Aesthetic Photography' },
+        { file: '_DSC4424.jpeg',                                      cat: 'Lifestyle',  alt: 'Lifestyle Photography' },
+        { file: '2916D275-FFC3-46C8-A1DA-BF59A43FE988.JPG',           cat: 'Fine Art',   alt: 'Featured Photography' },
+        { file: 'R6M20475.JPEG',                                      cat: 'Creative',   alt: 'Creative Photography' },
+        { file: 'R6M20620.JPEG',                                      cat: 'Events',     alt: 'Event Photography' },
+        { file: 'R6M20473.JPEG',                                      cat: 'Portrait',   alt: 'Portrait Photography' },
+        { file: '_DSC5118.jpg',                                       cat: 'Portrait',    alt: 'Portrait Photography' },
+        { file: '_DSC4418.jpg',                                       cat: 'Lifestyle',  alt: 'Lifestyle Photography' },
+        { file: '_DSC4146.jpg',                                       cat: 'Aesthetic',  alt: 'Aesthetic Photography' },
+        { file: 'BKFZ3258.JPG',                                       cat: 'Aesthetic (website designer btw)',  alt: 'Aesthetic Photography (website designer btw)' },
+        { file: 'MPJQ8519.JPG',                                       cat: 'Portrait',  alt: 'Portrait Photography' },
+        { file: 'YHER0820.JPG',                                       cat: 'Portrait',  alt: 'Portrait Photography' },
+        { file: 'IMG_8438.JPG',                                       cat: 'Aesthetic',  alt: 'Aesthetic Photography' },
+        { file: 'IMG_8450.JPG',                                       cat: 'Aesthetic',  alt: 'Aesthetic Photography' },
+        { file: '_DSC5981.JPG',                                       cat: 'Portrait',  alt: 'Portrait Photography' },
+        { file: '_DSC5977.JPG',                                       cat: 'Portrait',  alt: 'Portrait Photography' },
+        { file: '_DSC5970.JPG',                                       cat: 'Portrait',  alt: 'Portrait Photography' },
+        { file: '_DSC5968.JPG',                                       cat: 'Portrait',  alt: 'Portrait Photography' },
+        { file: '_DSC5963.JPG',                                       cat: 'Portrait',  alt: 'Portrait Photography' },
+        { file: '_DSC5956.JPG',                                       cat: 'Portrait',  alt: 'Portrait Photography' },
+        { file: '_DSC5915.JPG',                                       cat: 'Portrait',  alt: 'Portrait Photography' },
+        { file: '_DSC5912.JPG',                                       cat: 'Portrait',  alt: 'Portrait Photography' },
+        { file: '_DSC5908.JPG',                                       cat: 'Portrait',  alt: 'Portrait Photography' },
+        { file: '_DSC5905.JPG',                                       cat: 'Portrait',  alt: 'Portrait Photography' },
+        { file: 'IMG_8754.JPG',                                       cat: 'Aesthetic',  alt: 'Aesthetic Photography' },
+        { file: '2-2.JPG',                                            cat: 'Fine Art',   alt: 'Fine Art Photography' }
+      ].map(p => ({ ...p, src: GH_BASE + p.file }));
 
-      // ========== LAZY LOADING IMAGES ==========
-      const lazyImgs = document.querySelectorAll('img.lazy-img');
-      const imgObserver = new IntersectionObserver((entries, obs) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            const img = entry.target;
-            const src = img.dataset.src;
-            if (src) {
-              img.src = src;
-              img.onload = () => img.classList.add('img-loaded');
-              img.onerror = () => img.classList.add('img-loaded');
-            }
-            obs.unobserve(img);
-          }
-        });
-      }, { rootMargin: '200px 0px', threshold: 0.01 });
-      lazyImgs.forEach(img => imgObserver.observe(img));
-
-      // ========== REVEAL ON SCROLL ==========
       const revealObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
           if (entry.isIntersecting) {
@@ -1476,18 +1321,9 @@
       }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
       document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
-      // ========== LIGHTBOX ==========
       const lightbox = document.getElementById('lightbox');
       const lightboxImg = document.getElementById('lightboxImg');
-      const allImages = [
-        { src: 'https://raw.githubusercontent.com/michaellittleboi-blip/michaellittleboi-blip.github.io/refs/heads/main/_DSC1442.jpg', alt: 'Portrait Photography' },
-        { src: 'https://raw.githubusercontent.com/michaellittleboi-blip/michaellittleboi-blip.github.io/refs/heads/main/_DSC4044.jpg', alt: 'Creative Photography' },
-        { src: 'https://raw.githubusercontent.com/michaellittleboi-blip/michaellittleboi-blip.github.io/refs/heads/main/_DSC2398.jpg', alt: 'Nature Photography' },
-        { src: 'https://raw.githubusercontent.com/michaellittleboi-blip/michaellittleboi-blip.github.io/refs/heads/main/_DSC1292.jpg', alt: 'Wedding Photography' },
-        { src: 'https://raw.githubusercontent.com/michaellittleboi-blip/michaellittleboi-blip.github.io/refs/heads/main/_DSC2512.jpg', alt: 'Aesthetic Photography' },
-        { src: 'https://raw.githubusercontent.com/michaellittleboi-blip/michaellittleboi-blip.github.io/refs/heads/main/_DSC4424.jpeg', alt: 'Lifestyle Photography' },
-        { src: 'https://raw.githubusercontent.com/michaellittleboi-blip/michaellittleboi-blip.github.io/refs/heads/main/2916D275-FFC3-46C8-A1DA-BF59A43FE988.JPG', alt: 'Featured Photography' }
-      ];
+      const allImages = window.GALLERY_PHOTOS;
       const totalImagesCount = allImages.length;
       let currentIdx = 0;
 
@@ -1518,7 +1354,7 @@
             lightboxImg.style.opacity = '1';
             lightboxImg.style.transform = 'scale(1)';
           };
-          // Preload adjacent
+
           if (currentIdx > 0) new Image().src = allImages[currentIdx - 1].src;
           if (currentIdx < totalImagesCount - 1) new Image().src = allImages[currentIdx + 1].src;
         }, 200);
@@ -1532,12 +1368,7 @@
         updateLightboxImage();
       }
 
-      // Gallery items click
-      document.querySelectorAll('.gallery-item').forEach(item => {
-        item.addEventListener('click', () => openLightbox(parseInt(item.dataset.index)));
-      });
-      // Featured image click
-      document.querySelector('.featured-image-wrapper').addEventListener('click', () => openLightbox(6));
+      window.openLightbox = openLightbox;
 
       document.querySelector('.lightbox-close').addEventListener('click', closeLightbox);
       document.querySelector('.lightbox-prev').addEventListener('click', e => { e.stopPropagation(); prevImage(); });
@@ -1547,15 +1378,24 @@
       });
       lightboxImg.addEventListener('click', e => e.stopPropagation());
 
-      // Keyboard navigation
       document.addEventListener('keydown', e => {
-        if (!lightbox.classList.contains('active')) return;
-        if (e.key === 'Escape') closeLightbox();
-        if (e.key === 'ArrowLeft') prevImage();
-        if (e.key === 'ArrowRight') nextImage();
+        if (lightbox.classList.contains('active')) {
+          if (e.key === 'Escape') closeLightbox();
+          if (e.key === 'ArrowLeft') prevImage();
+          if (e.key === 'ArrowRight') nextImage();
+          return;
+        }
+
+        if ((e.key === 'ArrowLeft' || e.key === 'ArrowRight') && typeof window.spinCarousel === 'function') {
+          const hero = document.getElementById('home');
+          const heroRect = hero.getBoundingClientRect();
+          if (heroRect.bottom > 0 && heroRect.top < window.innerHeight) {
+            e.preventDefault();
+            window.spinCarousel(e.key === 'ArrowLeft' ? -1 : 1);
+          }
+        }
       });
 
-      // Touch swipe support
       let touchStartX = 0;
       lightboxImg.addEventListener('touchstart', e => { touchStartX = e.changedTouches[0].screenX; }, { passive: true });
       lightboxImg.addEventListener('touchend', e => {
@@ -1566,7 +1406,6 @@
         }
       }, { passive: true });
 
-      // ========== MOBILE MENU ==========
       const menuToggle = document.getElementById('menuToggle');
       const navLinks = document.getElementById('navLinks');
       menuToggle.addEventListener('click', () => {
@@ -1582,7 +1421,6 @@
         });
       });
 
-      // ========== NAVBAR SCROLL ==========
       let ticking = false;
       window.addEventListener('scroll', () => {
         if (!ticking) {
@@ -1594,7 +1432,6 @@
         }
       });
 
-      // ========== SMOOTH SCROLL ==========
       document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function(e) {
           e.preventDefault();
@@ -1604,6 +1441,345 @@
           }
         });
       });
+    </script>
+
+    <script type="module">
+      import * as THREE from 'three';
+
+      const photos = (window.GALLERY_PHOTOS || []).filter(p => p && p.src);
+      const canvas = document.getElementById('gallery-canvas');
+      const heroEl = document.getElementById('home');
+      const fallbackEl = document.getElementById('heroFallback');
+      const focusLabel = document.getElementById('heroFocusLabel');
+      if (!photos.length || !canvas) {  }
+
+      function showFallback() {
+        heroEl.classList.add('fallback-active');
+        photos.forEach(p => {
+          const img = new Image();
+          img.src = p.src;
+          img.alt = p.alt || '';
+          img.loading = 'lazy';
+          img.onerror = () => img.remove();
+          fallbackEl.appendChild(img);
+        });
+      }
+      function glAvailable() {
+        try {
+          const c = document.createElement('canvas');
+          return !!(window.WebGLRenderingContext && (c.getContext('webgl') || c.getContext('experimental-webgl')));
+        } catch (e) { return false; }
+      }
+      if (photos.length && !glAvailable()) { showFallback(); }
+
+      const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      let scene, camera, renderer, ring, raycaster, pointer;
+      const meshes = [];
+      let radius = 0;
+      const N = photos.length;
+      const planeH = 7.0;
+      const planeAspectDefault = 2 / 3;
+      const RING_TILT = -0.18;
+
+      if (photos.length && glAvailable()) {
+        scene = new THREE.Scene();
+        camera = new THREE.PerspectiveCamera(50, canvas.clientWidth / canvas.clientHeight, 0.1, 200);
+
+        renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+        renderer.setSize(canvas.clientWidth, canvas.clientHeight, false);
+
+        raycaster = new THREE.Raycaster();
+        pointer = new THREE.Vector2();
+
+        ring = new THREE.Group();
+        scene.add(ring);
+
+        radius = Math.max(4, (planeH * planeAspectDefault / 2) / Math.tan(Math.PI / N) * 0.85);
+
+        camera.position.set(0, 0, -radius * 0.10);
+        camera.lookAt(0, radius * Math.sin(RING_TILT), -radius * Math.cos(RING_TILT));
+
+        const loader = new THREE.TextureLoader();
+        loader.crossOrigin = 'anonymous';
+
+        photos.forEach((photo, i) => {
+          const angle = (i / N) * Math.PI * 2;
+
+          const mat = new THREE.MeshBasicMaterial({ transparent: true, opacity: 0, side: THREE.DoubleSide });
+          const geo = new THREE.PlaneGeometry(planeH * planeAspectDefault, planeH);
+          const mesh = new THREE.Mesh(geo, mat);
+          const basePos = new THREE.Vector3(Math.sin(angle) * radius, 0, -Math.cos(angle) * radius);
+          mesh.position.copy(basePos);
+          mesh.lookAt(0, 0, 0);
+          mesh.userData = { photoIndex: i, angle, loaded: false, baseQuat: mesh.quaternion.clone(), hoverNX: 0, hoverNY: 0, curTiltX: 0, curTiltY: 0, basePos: basePos, toCenter: new THREE.Vector3(-Math.sin(angle), 0, Math.cos(angle)), curForward: 0 };
+          ring.add(mesh);
+          meshes.push(mesh);
+
+          loader.load(
+            photo.src,
+            (tex) => {
+              tex.generateMipmaps = true;
+              tex.minFilter = THREE.LinearMipmapLinearFilter;
+              tex.magFilter = THREE.LinearFilter;
+              tex.anisotropy = renderer.capabilities.getMaxAnisotropy();
+
+              const aspect = tex.image.width / tex.image.height;
+              const h = planeH;
+              const w = h * aspect;
+              mesh.geometry.dispose();
+              mesh.geometry = new THREE.PlaneGeometry(w, h);
+              mesh.material.map = tex;
+              mesh.material.needsUpdate = true;
+              mesh.material.opacity = 1;
+              mesh.userData.loaded = true;
+            },
+            undefined,
+            () => {  }
+          );
+        });
+
+        ring.rotation.x = RING_TILT;
+        ring.rotation.y = 0;
+      }
+
+      let autoSpin = !reducedMotion;
+      let isDragging = false;
+      let dragStartX = 0;
+      let dragStartRot = 0;
+      let velocity = 0;
+      let snapping = false;
+      let snapTarget = 0;
+      const AUTO_SPEED = 0.0007;
+      const SNAP_STEP = N ? (Math.PI * 2) / N : 0;
+      const hoverEnabled = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+      let hoveredMesh = null;
+      const MAX_TILT = 0.3;
+      const HOVER_SCALE = 1.12;
+      const HOVER_FORWARD = 1.8;
+      const _tq = new THREE.Quaternion();
+      const _euler = new THREE.Euler();
+
+      function frontIndex() {
+        if (!N) return 0;
+
+        let best = 0, bestDelta = Infinity;
+        for (let i = 0; i < N; i++) {
+          const worldAngle = meshes[i].userData.angle - ring.rotation.y;
+          const norm = ((worldAngle % (Math.PI * 2)) + Math.PI * 2) % (Math.PI * 2);
+          const delta = Math.min(norm, Math.PI * 2 - norm);
+          if (delta < bestDelta) { bestDelta = delta; best = i; }
+        }
+        return best;
+      }
+      function updateFocusLabel() {
+        if (!focusLabel || !photos.length) return;
+        const i = frontIndex();
+        focusLabel.textContent = photos[i].cat || '';
+        focusLabel.classList.add('visible');
+      }
+      let lastFront = -1;
+      function maybeUpdateLabel() {
+        const f = frontIndex();
+        if (f !== lastFront) { lastFront = f; updateFocusLabel(); }
+      }
+
+      window.spinCarousel = function(dir) {
+        if (!ring) return;
+        velocity = 0;
+        snapping = true;
+        const idx = frontIndex();
+        const targetIdx = ((dir > 0 ? idx + 1 : idx - 1) % N + N) % N;
+
+        snapTarget = meshes[targetIdx].userData.angle;
+
+        const cur = ring.rotation.y;
+        const twoPi = Math.PI * 2;
+        let diff = ((snapTarget - cur) % twoPi + twoPi) % twoPi;
+        if (diff > Math.PI) diff -= twoPi;
+        snapTarget = cur + diff;
+      };
+
+      function onPointerDown(e) {
+        if (!ring) return;
+        isDragging = true;
+        hoveredMesh = null;
+        snapping = false;
+        velocity = 0;
+        dragStartX = e.clientX;
+        dragStartRot = ring.rotation.y;
+        canvas.setPointerCapture && canvas.setPointerCapture(e.pointerId);
+      }
+      function onPointerMove(e) {
+        if (!ring) return;
+        if (isDragging) {
+          const dx = e.clientX - dragStartX;
+          const newRot = dragStartRot - dx * 0.006;
+          velocity = newRot - ring.rotation.y;
+          ring.rotation.y = newRot;
+          maybeUpdateLabel();
+          return;
+        }
+        if (!hoverEnabled) return;
+        const rect = canvas.getBoundingClientRect();
+        pointer.x = ((e.clientX - rect.left) / rect.width) * 2 - 1;
+        pointer.y = -((e.clientY - rect.top) / rect.height) * 2 + 1;
+        raycaster.setFromCamera(pointer, camera);
+        const hits = raycaster.intersectObjects(meshes);
+        if (hits.length && hits[0].object.userData.loaded && hits[0].uv) {
+          hoveredMesh = hits[0].object;
+          hoveredMesh.userData.hoverNX = hits[0].uv.x * 2 - 1;
+          hoveredMesh.userData.hoverNY = hits[0].uv.y * 2 - 1;
+        } else {
+          hoveredMesh = null;
+        }
+      }
+      function onPointerUp(e) {
+        if (!ring || !isDragging) return;
+        isDragging = false;
+        canvas.releasePointerCapture && e.pointerId !== undefined && canvas.releasePointerCapture(e.pointerId);
+
+        velocity = Math.max(-0.08, Math.min(0.08, velocity));
+      }
+      if (ring) {
+        canvas.addEventListener('pointerdown', onPointerDown);
+        canvas.addEventListener('pointermove', onPointerMove);
+        canvas.addEventListener('pointerup', onPointerUp);
+        canvas.addEventListener('pointercancel', onPointerUp);
+
+        canvas.addEventListener('pointerenter', () => { autoSpin = false; });
+        canvas.addEventListener('pointerleave', () => { hoveredMesh = null; if (!reducedMotion) autoSpin = true; });
+      }
+
+      if (ring) {
+        canvas.addEventListener('wheel', (e) => {
+          const r = heroEl.getBoundingClientRect();
+          if (r.bottom <= 0 || r.top >= window.innerHeight) return;
+          e.preventDefault();
+          snapping = false;
+          velocity = 0;
+          ring.rotation.y += e.deltaY * 0.0009;
+          maybeUpdateLabel();
+        }, { passive: false });
+      }
+
+      function onClick(e) {
+        if (!ring || isDragging) return;
+        const rect = canvas.getBoundingClientRect();
+        pointer.x = ((e.clientX - rect.left) / rect.width) * 2 - 1;
+        pointer.y = -((e.clientY - rect.top) / rect.height) * 2 + 1;
+        raycaster.setFromCamera(pointer, camera);
+        const hits = raycaster.intersectObjects(meshes);
+        if (hits.length && hits[0].object.userData.loaded) {
+          if (typeof window.openLightbox === 'function') {
+            window.openLightbox(hits[0].object.userData.photoIndex);
+          }
+        }
+      }
+      if (ring) canvas.addEventListener('click', onClick);
+
+      function fitCamera() {
+        if (!camera || !N) return;
+        const aspect = camera.aspect;
+        const frontY = radius * Math.sin(RING_TILT);
+        const frontZ = -radius * Math.cos(RING_TILT);
+        let dist;
+        if (aspect >= 1) {
+          dist = radius * 0.90;
+        } else {
+          const photoW = planeH * planeAspectDefault;
+          const vFovRad = camera.fov * Math.PI / 180;
+          const hFovRad = 2 * Math.atan(Math.tan(vFovRad / 2) * aspect);
+          dist = (photoW * 1.25) / (2 * Math.tan(hFovRad / 2));
+        }
+        const dy = frontY;
+        const dzSq = dist * dist - dy * dy;
+        const dz = dzSq > 0 ? Math.sqrt(dzSq) : dist;
+        camera.position.set(0, 0, frontZ + dz);
+        camera.lookAt(0, frontY, frontZ);
+      }
+      function onResize() {
+        if (!renderer || !camera) return;
+        const w = canvas.clientWidth, h = canvas.clientHeight;
+        camera.aspect = w / h;
+        camera.updateProjectionMatrix();
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+        renderer.setSize(w, h, false);
+        fitCamera();
+      }
+      window.addEventListener('resize', onResize);
+
+      let inView = true;
+      if (ring && 'IntersectionObserver' in window) {
+        new IntersectionObserver((entries) => {
+          inView = entries[0].isIntersecting;
+        }, { threshold: 0 }).observe(heroEl);
+      }
+
+      function animate() {
+        requestAnimationFrame(animate);
+        if (!ring || !inView) return;
+
+        if (!isDragging && !snapping) {
+          if (autoSpin && !reducedMotion) ring.rotation.y += AUTO_SPEED;
+          if (Math.abs(velocity) > 0.0002) {
+            ring.rotation.y += velocity;
+            velocity *= 0.92;
+            maybeUpdateLabel();
+          } else if (velocity !== 0) {
+
+            velocity = 0;
+            snapping = true;
+            const idx = frontIndex();
+            snapTarget = meshes[idx].userData.angle;
+            const cur = ring.rotation.y, twoPi = Math.PI * 2;
+            let diff = ((snapTarget - cur) % twoPi + twoPi) % twoPi;
+            if (diff > Math.PI) diff -= twoPi;
+            snapTarget = cur + diff;
+          }
+        } else if (snapping) {
+
+          ring.rotation.y += (snapTarget - ring.rotation.y) * 0.18;
+          maybeUpdateLabel();
+          if (Math.abs(snapTarget - ring.rotation.y) < 0.001) {
+            ring.rotation.y = snapTarget;
+            snapping = false;
+          }
+        }
+
+        meshes.forEach(m => {
+          const isHover = (m === hoveredMesh);
+          const targetScale = isHover ? HOVER_SCALE : 1.0;
+          const targetTX = isHover ? (m.userData.hoverNY || 0) * MAX_TILT : 0;
+          const targetTY = isHover ? -(m.userData.hoverNX || 0) * MAX_TILT : 0;
+          const targetForward = isHover ? HOVER_FORWARD : 0;
+          const ns = m.scale.x + (targetScale - m.scale.x) * 0.15;
+          m.scale.setScalar(ns);
+          m.userData.curTiltX = (m.userData.curTiltX || 0) + (targetTX - (m.userData.curTiltX || 0)) * 0.15;
+          m.userData.curTiltY = (m.userData.curTiltY || 0) + (targetTY - (m.userData.curTiltY || 0)) * 0.15;
+          if (m.userData.baseQuat) {
+            _tq.setFromEuler(_euler.set(m.userData.curTiltX, m.userData.curTiltY, 0));
+            m.quaternion.copy(m.userData.baseQuat).multiply(_tq);
+          }
+          m.userData.curForward = (m.userData.curForward || 0) + (targetForward - (m.userData.curForward || 0)) * 0.15;
+          if (m.userData.basePos && m.userData.toCenter) {
+            m.position.copy(m.userData.basePos).addScaledVector(m.userData.toCenter, m.userData.curForward);
+          }
+          if (m.userData.loaded) {
+            const targetOp = (hoveredMesh && !isHover) ? 0.72 : 1.0;
+            m.material.opacity += (targetOp - m.material.opacity) * 0.12;
+          }
+        });
+        maybeUpdateLabel();
+        renderer.render(scene, camera);
+      }
+
+      if (ring) {
+        onResize();
+        updateFocusLabel();
+        animate();
+      }
     </script>
   <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a03ac103dc0776a0',t:'MTc4MDExMjgwOQ=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
